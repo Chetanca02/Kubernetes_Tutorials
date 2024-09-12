@@ -5,24 +5,24 @@
 - [Kubernetes\_Tutorials](#kubernetes_tutorials)
   - [Author: Chetan](#author-chetan)
   - [Table of Contents](#table-of-contents)
-  - [Kubernetes: Introduction](#kubernetes-introduction)
-  - [Kubernetes: Components](#kubernetes-components)
-    - [Control Plane](#control-plane)
-    - [Worker Nodes](#worker-nodes)
+  - [Kubernetes: Introduction ](#kubernetes-introduction-)
+  - [Kubernetes: Components ](#kubernetes-components-)
+    - [Control Plane ](#control-plane-)
+    - [Worker Nodes ](#worker-nodes-)
 
 
 
 
-## Kubernetes: Introduction
+## Kubernetes: Introduction <a name="kubernetes-introduction"></a>
 Kubernetes is an open source orchestrator for deploying containerized applications. Kubernetes was originally developed by Google, inspired by a decade of experience deploying scalable, reliable systems in containers via application-oriented APIs. Kubernetes is a platform for managing application containers across multiple hosts. It provides lots of management features for contain-oriented applications, such as auto scaling, rolling deployment, compute resource, and volume management. Same as the nature of containers, it's designed to run anywhere, so we're able to run it on a bare metal, in our data center, on the public cloud, or even hybrid cloud.
 Kubernetes has grown to be the product of a rich and growing open source community.
 
-## Kubernetes: Components
+## Kubernetes: Components <a name="kubernetes-components"></a>
 Kubernetes includes two major players:
 - Masters: The Master is the heart of Kubernetes, which controls and schedules all the activities in the cluster. Also called the Control plane
 - Nodes: Nodes are the workers that run our containers. A node is a single host. It may be a physical or virtual machine. Its job is to run pods.
 
-### Control Plane
+### Control Plane <a name="control-plane"></a>
 Manage the overall state of the cluster.
 Control Plane Components
 
@@ -36,21 +36,21 @@ All the components can run on different hosts with clustering.
 
 ![Control Plane Components](image.png)
 
-### Worker Nodes
+### Worker Nodes <a name="worker-nodes"></a>
 Node components need to be provisioned and run on every node, which report the runtime status of the pod to the maste
 Worker Node Components
 - Kubelet: The kubelet is the Kubernetes representative on the node. It oversees communicating with the master components and manage the running pods. That includes the following:
-• Download pod secrets from the API server
-• Mount volumes
-• Run the pod's container (Docker or Rkt)
-• Report the status of the node and each pod
-• Run container liveness probes
+  - Download pod secrets from the API server
+  - Mount volumes
+  - Run the pod's container (Docker or Rkt)
+  - Report the status of the node and each pod
+  - Run container liveness probes
 - kube-proxy: The kube proxy does low-level network housekeeping on each node. It refects the Kubernetes services locally and can do TCP and UDP forwarding. It finds cluster IPs via environment variables or DNS. Proxy handles the routing between pod load balancer (a.k.a. service) and pods, it also provides the routing from outside to service. There are two proxy modes, userspace and iptables. Userspace mode creates large overhead by switching kernel space and user space. Iptables mode, on the other hand, is the latest default proxy mode. It changes iptables NAT in Linux to achieve routing TCP and UDP packets across all containers.
 - Container runtime: Software responsible for running containers. Common container runtime engines are:
-• containerd
-• CRI-O
-• Docker Engine
-• Mirantis Container Runtime
+  - containerd
+  - CRI-O
+  - Docker Engine
+  - Mirantis Container Runtime
 
 ![Kubernetes Components](image-1.png)
 
