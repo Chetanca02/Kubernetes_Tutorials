@@ -1,14 +1,12 @@
-# Kubernetes_Tutorials
-## Author: Chetan
+# Kubernetes_Tutorials <!-- omit in toc -->
+## Author: Chetan <!-- omit in toc -->
 
 ## Table of Contents
-- [Kubernetes\_Tutorials](#kubernetes_tutorials)
-  - [Author: Chetan](#author-chetan)
-  - [Table of Contents](#table-of-contents)
-  - [Kubernetes: Introduction ](#kubernetes-introduction-)
-  - [Kubernetes: Components ](#kubernetes-components-)
-    - [Control Plane ](#control-plane-)
-    - [Worker Nodes ](#worker-nodes-)
+- [Table of Contents](#table-of-contents)
+- [Kubernetes: Introduction ](#kubernetes-introduction-)
+- [Kubernetes: Components ](#kubernetes-components-)
+  - [Control Plane ](#control-plane-)
+  - [Worker Nodes ](#worker-nodes-)
 
 
 
