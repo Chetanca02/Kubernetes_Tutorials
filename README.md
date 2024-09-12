@@ -1,8 +1,6 @@
 # Kubernetes_Tutorials <!-- omit in toc -->
 ## Author: Chetan <!-- omit in toc -->
 
-## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Kubernetes: Introduction ](#kubernetes-introduction-)
 - [Kubernetes: Components ](#kubernetes-components-)
   - [Control Plane ](#control-plane-)
