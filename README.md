@@ -52,6 +52,8 @@ Worker Node Components
 • Docker Engine
 • Mirantis Container Runtime
 
+![Kubernetes Components](image-1.png)
+
 
 
 
