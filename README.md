@@ -6,7 +6,9 @@
   - [Control Plane ](#control-plane-)
   - [Worker Nodes ](#worker-nodes-)
 - [Kubernetes Single server Setup using Minikube ](#kubernetes-single-server-setup-using-minikube-)
-- [Kubernetes Single server Setup Docker Desktop ](#kubernetes-single-server-setup-docker-desktop-)
+- [Kubernetes Single server Setup using Docker Desktop ](#kubernetes-single-server-setup-using-docker-desktop-)
+- [Kubernetes Cluster Setup using Vagrant ](#kubernetes-cluster-setup-using-vagrant-)
+  - [Credit (https://github.com/techiescamp)](#credit-httpsgithubcomtechiescamp)
 - [The Kubernetes Client ](#the-kubernetes-client-)
 - [Kubernetes Objects ](#kubernetes-objects-)
 - [Kubernetes Object Management ](#kubernetes-object-management-)
@@ -56,8 +58,36 @@ Worker Node Components
 ## Kubernetes Single server Setup using Minikube <a name="kubernetes-single-server-setup-using-minikube"></a>
 Follow the official documentation for installing [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
 
-## Kubernetes Single server Setup Docker Desktop <a name="kubernetes-single-server-setup-using-dd"></a>
-Follow the official documentation for installing [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+## Kubernetes Single server Setup using Docker Desktop <a name="kubernetes-single-server-setup-using-dd"></a>
+Install Docker Desktop on your Windows or Linux Machine, and enable Kuberentes
+![Enable Kubernetes in Docker Desktop](image-3.png)
+
+## Kubernetes Cluster Setup using Vagrant <a name="kubernetes-cluster-setup-using-vagrant"></a>
+### Credit (https://github.com/techiescamp)
+For cluster setup using Vagrant, I have followed the below repo from techiescamp:
+https://github.com/techiescamp/vagrant-kubeadm-kubernetes
+You can also refer:
+https://devopscube.com/kubernetes-cluster-vagrant/
+although it seems to not include latest updates.
+
+###Prerequisites
+- Working Vagrant setup
+- VMWare
+- 8 Gig + RAM workstation as the Vms use 3 vCPUS and 4+ GB RAM
+
+Download and install vagrant for your OS (Windows or Linux or MacOS) using the below link:
+https://developer.hashicorp.com/vagrant/install?product_intent=vagrant
+Also you will need a VMware which vagrant will use to create VMs. I have used Oracle VirtualBox on my Windows Machine.
+Steps:
+- git clone https://github.com/scriptcamp/vagrant-kubeadm-kubernetes.git
+- cd vagrant-kubeadm-kubernetes
+- vagrant up
+- Copy configs/config to ~/.kube
+  or
+  export KUBECONFIG=$(pwd)/configs/config
+- vagrant ssh controlplane
+- check if k8s cluster is working: kubectl get nodes
+
 
 ## The Kubernetes Client <a name="the-kubernetes-client"></a>
 The official Kubernetes client is kubectl: a command-line tool for interacting with the Kubernetes API. kubectl can be used to manage most Kubernetes objects such as pods, ReplicaSets, and services. kubectl can also be used to explore and verify the overall health of the cluster.
