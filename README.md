@@ -5,8 +5,11 @@
 - [Kubernetes: Components ](#kubernetes-components-)
   - [Control Plane ](#control-plane-)
   - [Worker Nodes ](#worker-nodes-)
-
-
+- [Kubernetes Single server Setup using Minikube ](#kubernetes-single-server-setup-using-minikube-)
+- [Kubernetes Single server Setup Docker Desktop ](#kubernetes-single-server-setup-docker-desktop-)
+- [The Kubernetes Client ](#the-kubernetes-client-)
+- [Kubernetes Objects ](#kubernetes-objects-)
+- [Kubernetes Object Management ](#kubernetes-object-management-)
 
 
 ## Kubernetes: Introduction <a name="kubernetes-introduction"></a>
@@ -50,6 +53,37 @@ Worker Node Components
 
 ![Kubernetes Components](image-1.png)
 
+## Kubernetes Single server Setup using Minikube <a name="kubernetes-single-server-setup-using-minikube"></a>
+Follow the official documentation for installing [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
 
+## Kubernetes Single server Setup Docker Desktop <a name="kubernetes-single-server-setup-using-dd"></a>
+Follow the official documentation for installing [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
 
+## The Kubernetes Client <a name="the-kubernetes-client"></a>
+The official Kubernetes client is kubectl: a command-line tool for interacting with the Kubernetes API. kubectl can be used to manage most Kubernetes objects such as pods, ReplicaSets, and services. kubectl can also be used to explore and verify the overall health of the cluster.
+A kubectl execution consists of a command, a resource type, a resource name, and optional command line flags:
+$ kubectl [command] [TYPE] [NAME] [flags]
+![Kubectl usage pattern](image-2.png)
+Some usage of kubectl (will explore more in subsequent topics):
+- Check the version of the cluster that you are running:
+$ kubectl version
+- Get a simple diagnostic for the cluster.
+$ kubectl get componentstatuses
+- List out all of the nodes in our cluster:
+$ kubectl get nodes
+
+## Kubernetes Objects <a name="kubernetes-objects"></a>
+Kubernetes objects are the entries in the cluster, which are stored in etcd. They represent the desired state of your cluster. When we create an object, we send the request to API Server by kubectl or RESTful API. API Server will store the state into etcd and interact with other master components to ensure the object exists. Every object has its own name and unique ID.
+Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster. Specifically, they can describe:
+- What containerized applications are running (and on which nodes)
+- The resources available to those applications
+- The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance
+
+## Kubernetes Object Management <a name="kubernetes-object-management"></a>
+You can create objects in a Kubernetes cluster in two ways: imperatively or declaratively.
+- Imperative Approach: The imperative method for object creation does not require a manifest definition. You would use the kubectl run or kubectl create command to create an object on the fly. Any configuration needed at runtime is provided by command-line options. The benefit of this approach is the fast turnaround time without the need to wrestle with YAML structures:
+$ kubectl run frontend --image=nginx --restart=Never --port=80
+- Declarative Approach: The declarative approach creates objects from a manifest file (in most cases, a YAML file) using the kubectl create or kubectl apply command. The benefit of using the declarative method is reproducibility and improved maintenance, as the file is checked into version control in most cases. The declarative approach is the recommended way to create objects in production environments. We will see these approach in details in subsequent sections.
+- Hybrid Approach: Sometimes, you may want to go with a hybrid approach. You can start by using the imperative method to produce a manifest file without actually creating an object. You do so by executing the kubectl run command with the command-line options -o yaml and --dry-run=client:
+$ kubectl run frontend --image=nginx --restart=Never --port=80 -o yaml --dry-run=client > pod.yaml
 
