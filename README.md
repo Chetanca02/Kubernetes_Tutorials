@@ -128,4 +128,4 @@ In the following graph, the client uses kubectl to send requests to the API serv
 ![Interaction between K8s master and nodes](image-4.png)
 
 ## Used aliases
-Throughout this tutorial, I may use some aliases which I am mentioning below. This list can be updated later on.
+Throughout this tutorial, I have used aliases which I am mentioning in a separate file, 'kube_aliases.txt'. This list can be updated later on.

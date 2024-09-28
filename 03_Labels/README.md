@@ -55,7 +55,7 @@ Label Selectors is used to filter the set of objects. Separated by commas, multi
     tier notin (frontend, backend)
     partition
     !partition
-    ```yaml
+    ```
     The first example selects all resources with key equal to environment and value equal to production or qa. The second example selects all resources with key equal to tier and values other than frontend and backend, and all resources with no labels with the tier key. The third example selects all resources including a label with key partition; no values are checked. The fourth example selects all resources without a label with key partition; no values are checked. Similarly the comma separator acts as an AND operator. So filtering resources with a partition key (no matter the value) and with environment different than qa can be achieved using partition,environment notin (qa). The set-based label selector is a general form of equality since environment=production is equivalent to environment in (production); similarly for != and notin. Set-based requirements can be mixed with equality-based requirements. For example: partition in (customerA, customerB),environment!=qa.
 
 The set of pods that a service targets is defined with a label selector. Similarly, the population of pods that a replicationcontroller should manage is also defined with a label selector.
