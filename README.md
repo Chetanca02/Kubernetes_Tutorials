@@ -8,11 +8,12 @@
 - [Kubernetes Single server Setup using Minikube ](#kubernetes-single-server-setup-using-minikube-)
 - [Kubernetes Single server Setup using Docker Desktop ](#kubernetes-single-server-setup-using-docker-desktop-)
 - [Kubernetes Cluster Setup using Vagrant ](#kubernetes-cluster-setup-using-vagrant-)
-  - [Credit (https://github.com/techiescamp)](#credit-httpsgithubcomtechiescamp)
   - [Prerequisites](#prerequisites)
 - [The Kubernetes Client ](#the-kubernetes-client-)
 - [Kubernetes Objects ](#kubernetes-objects-)
 - [Kubernetes Object Management ](#kubernetes-object-management-)
+- [Interaction between Kubernetes master and nodes ](#interaction-between-kubernetes-master-and-nodes-)
+- [Used aliases](#used-aliases)
 
 
 ## Kubernetes: Introduction <a name="kubernetes-introduction"></a>
@@ -20,6 +21,7 @@ Kubernetes is an open source orchestrator for deploying containerized applicatio
 Kubernetes has grown to be the product of a rich and growing open source community.
 
 ## Kubernetes: Components <a name="kubernetes-components"></a>
+![Kubernetes Architecture](image-5.png)
 Kubernetes includes two major players:
 - Masters: The Master is the heart of Kubernetes, which controls and schedules all the activities in the cluster. Also called the Control plane
 - Nodes: Nodes are the workers that run our containers. A node is a single host. It may be a physical or virtual machine. Its job is to run pods.
@@ -64,11 +66,11 @@ Install Docker Desktop on your Windows or Linux Machine, and enable Kuberentes
 ![Enable Kubernetes in Docker Desktop](image-3.png)
 
 ## Kubernetes Cluster Setup using Vagrant <a name="kubernetes-cluster-setup-using-vagrant"></a>
-### Credit (https://github.com/techiescamp)
+### Credit (https://github.com/techiescamp)  <!-- omit in toc -->
 For cluster setup using Vagrant, I have followed the below repo from techiescamp:
-https://github.com/techiescamp/vagrant-kubeadm-kubernetes
+https://github.com/techiescamp/vagrant-kubeadm-kubernetes 
 You can also refer:
-https://devopscube.com/kubernetes-cluster-vagrant/
+https://devopscube.com/kubernetes-cluster-vagrant/ 
 although it seems to not include latest updates.
 
 ### Prerequisites
@@ -104,11 +106,14 @@ $ kubectl get componentstatuses
 $ kubectl get nodes
 
 ## Kubernetes Objects <a name="kubernetes-objects"></a>
-Kubernetes objects are the entries in the cluster, which are stored in etcd. They represent the desired state of your cluster. When we create an object, we send the request to API Server by kubectl or RESTful API. API Server will store the state into etcd and interact with other master components to ensure the object exists. Every object has its own name and unique ID.
+Kubernetes objects are the entries in the cluster, which are stored in etcd. They represent the desired state of your cluster. When we create an object, we send the request to API Server by kubectl or RESTful API. API Server will store the state into etcd and interact with other master components to ensure the object exists. Every object has its own name and unique ID. Kubernetes uses object name as part of a resource URL to API Server, so it must be the combination of lower case of alphanumeric characters, dash and dot, less than 254 characters.
 Kubernetes objects are persistent entities in the Kubernetes system. Kubernetes uses these entities to represent the state of your cluster. Specifically, they can describe:
 - What containerized applications are running (and on which nodes)
 - The resources available to those applications
-- The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance
+- The policies around how those applications behave, such as restart policies, upgrades, and fault-tolerance.
+Almost every Kubernetes object includes two nested object fields that govern the object's configuration: the object spec and the object status.
+- Object spec provides a description of the characteristics you want the resource to have: its desired state.
+- The status describes the current state of the object, supplied and updated by the Kubernetes system and its components.
 
 ## Kubernetes Object Management <a name="kubernetes-object-management"></a>
 You can create objects in a Kubernetes cluster in two ways: imperatively or declaratively.
@@ -118,3 +123,9 @@ $ kubectl run frontend --image=nginx --restart=Never --port=80
 - Hybrid Approach: Sometimes, you may want to go with a hybrid approach. You can start by using the imperative method to produce a manifest file without actually creating an object. You do so by executing the kubectl run command with the command-line options -o yaml and --dry-run=client:
 $ kubectl run frontend --image=nginx --restart=Never --port=80 -o yaml --dry-run=client > pod.yaml
 
+## Interaction between Kubernetes master and nodes <a name="interaction-between-kubernetes-master-and-nodes"></a>
+In the following graph, the client uses kubectl to send requests to the API server; API server responds to the request, pushes and pulls the object information from etcd. Scheduler determines which node should be assigned to do the tasks (for example, run pods). Controller Manager monitors the running tasks and responds if any undesired state occurs. On the other hand, the API server fetches the logs from pods by kubelet, and is also a hub between other master components.
+![Interaction between K8s master and nodes](image-4.png)
+
+## Used aliases
+Throughout this tutorial, I may use some aliases which I am mentioning below. This list can be updated later on.
