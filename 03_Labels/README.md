@@ -99,3 +99,28 @@ pod/nginx labeled
 $ kgp -n kube-tut --show-labels=true
 NAME    READY   STATUS    RESTARTS   AGE   LABELS
 nginx   1/1     Running   0          13m   demo=true,env=dev
+
+Now, lets specify label selectors to filter the set of objects (for now, pods) returned.
+```
+$ kgp -n kube-tut -l demo=true
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   1          6h52m
+$ kgp -n kube-tut -l env=dev
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   1          6h52m
+$ kgp -n kube-tut -l env=prod
+No resources found in kube-tut namespace.
+$ kgp -n kube-tut -l 'env in (dev, test), demo in (true)'
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   1          6h56m
+$ kgp -n kube-tut -l 'env in (dev, test), demo in (false)'
+No resources found in kube-tut namespace.
+$ kgp -n kube-tut -l 'env in (dev, test), demo notin (false)'
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   1          6h57m
+$ kgp -n kube-tut -l 'env, demo notin (false)'
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   1          6h57m
+$ kgp -n kube-tut -l '!env, demo notin (false)'
+No resources found in kube-tut namespace.
+```
