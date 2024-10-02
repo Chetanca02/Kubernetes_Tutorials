@@ -75,3 +75,27 @@ selector:
     - { key: tier, operator: In, values: [cache] }
     - { key: environment, operator: NotIn, values: [dev] }
 ```
+
+Lets check the label for the pod that we created for nginx:
+
+```
+$  kgp -n kube-tut --show-labels=true
+NAME    READY   STATUS              RESTARTS   AGE   LABELS
+nginx   0/1     ContainerCreating   0          2s    <none>
+```
+Since we didn't assign any label to the pod, the label is shown here as '<none>'.
+Let's assign a few labels to the pod.
+```
+$ k label pod nginx -n kube-tut demo=true env=test
+pod/nginx labeled
+$ kgp -n kube-tut --show-labels=true
+NAME    READY   STATUS    RESTARTS   AGE   LABELS
+nginx   1/1     Running   0          10m   demo=true,env=test
+```
+To overwrite existing label, use flag --overwrite.
+```
+$ k label --overwrite pod nginx -n kube-tut env=dev
+pod/nginx labeled
+$ kgp -n kube-tut --show-labels=true
+NAME    READY   STATUS    RESTARTS   AGE   LABELS
+nginx   1/1     Running   0          13m   demo=true,env=dev

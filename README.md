@@ -82,6 +82,7 @@ Download and install vagrant for your OS (Windows or Linux or MacOS) using the b
 https://developer.hashicorp.com/vagrant/install?product_intent=vagrant
 Also you will need a VMware which vagrant will use to create VMs. I have used Oracle VirtualBox on my Windows Machine.
 Steps:
+```
 - $ git clone https://github.com/scriptcamp/vagrant-kubeadm-kubernetes.git
 - $ cd vagrant-kubeadm-kubernetes
 - $ vagrant up
@@ -90,7 +91,7 @@ Steps:
   $ export KUBECONFIG=$(pwd)/configs/config
 - $ vagrant ssh controlplane
 - check if k8s cluster is working: $ kubectl get nodes
-
+```
 
 ## The Kubernetes Client <a name="the-kubernetes-client"></a>
 The official Kubernetes client is kubectl: a command-line tool for interacting with the Kubernetes API. kubectl can be used to manage most Kubernetes objects such as pods, ReplicaSets, and services. kubectl can also be used to explore and verify the overall health of the cluster.
