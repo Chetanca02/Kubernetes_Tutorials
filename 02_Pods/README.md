@@ -57,6 +57,8 @@ $ kex nginx -n kube-tut -- /bin/bash
 Do you think we can access the pod simple-service from outside of Kubernetes, without changing the manifest?
 The answer is no, the pod is only visible from the inside of the container. To access it from outside, we will need to create a service.
 
+Multiple containers within the pod access each other through a loopback address(localhost).
+
 For now we donot need to clean up the pod, as it will be needed ahead.
 But you can perform clean up in 2 ways:
 ```
