@@ -99,6 +99,7 @@ pod/nginx labeled
 $ kgp -n kube-tut --show-labels=true
 NAME    READY   STATUS    RESTARTS   AGE   LABELS
 nginx   1/1     Running   0          13m   demo=true,env=dev
+```
 
 Now, lets specify label selectors to filter the set of objects (for now, pods) returned.
 ```

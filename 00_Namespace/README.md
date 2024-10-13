@@ -17,11 +17,14 @@ Let's create a namespace for this tutorials called *kube-tut*.
 - Before that check what all namespaces (will refer as ns going ahead) are already there:
   *$ kgns*
   ![List of ns - pre](image.png)
+
 - Below command will create the ns kube-tut:
   *$ k create ns kube-tut*
 - Check if ns created successfully:
   *$ kgns*
+
   ![List of ns - post](image-1.png)
+  
 - To delete this ns: 
   *$ krmns kube-tut*
 

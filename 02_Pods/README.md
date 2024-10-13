@@ -1,5 +1,7 @@
 - [Pods ](#pods-)
-- [Simple nginx pod using k run ](#simple-nginx-pod-using-k-run-)
+- [Simple nginx pod ](#simple-nginx-pod-)
+  - [Using kubectl run](#using-kubectl-run)
+  - [Using manifests file](#using-manifests-file)
 
 ## Pods <a name="Pods"></a>
 
@@ -17,7 +19,9 @@ One of the first things you learn when beginning working with Kubernetes is that
 
 *In general, the right question to ask yourself when designing Pods is, “Will these containers work correctly if they land on different machines?” If the answer is “no,” a Pod is the correct grouping for the containers.*
 
-## Simple nginx pod using k run <a name="simple-nginx-pod-using-k-run"></a>
+## Simple nginx pod <a name="simple-nginx-pod"></a>
+
+### Using kubectl run
 ```
 $ k run nginx --image=nginx -n kube-tut
 ```
@@ -26,6 +30,7 @@ $ k run nginx --image=nginx -n kube-tut
 The status of our example pod is ContainerCreating. In this phase, Kubernetes has accepted the request, trying to schedule the pod and pulling down the image. Zero containers are currently running. After waiting a moment, we could get the status again:
 ![alt text](image-2.png)
 
+### Using manifests file
 Let's try the same using hybrid mode. First we create a pod using k run, and create a manifest file. Then edit the file.
 ```
 $ k run nginx --image=nginx --restart=Never -n kube-tut -o yaml > pod.yaml
