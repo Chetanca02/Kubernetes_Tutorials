@@ -1,0 +1,3 @@
+### Load Balancer
+Load balancers are used to distribute the traffic between the multiple pods. With the help of this service object, the services will be exposed via the cloud’s load balancer.
+If you’re using a cloud service like Amazon Elastic Container Service for Kubernetes (EKS) or other cloud provider’s k8s solution, then you can specify a load balancer in your manifest file. What it would do is spin up a load balancer in the cloud and point the load balancer to your service. This would allow you to use port 443 for example on your load balancer and direct traffic to one of those 30000 or higher ports.

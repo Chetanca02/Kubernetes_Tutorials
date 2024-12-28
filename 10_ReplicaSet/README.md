@@ -3,7 +3,7 @@ Replica Sets are the kubrenetes workload, a level above pods that ensures a cert
 Let's create a replicaset using the manifest file. 
 
 ```
-$ ka 06_ReplicaSet/rs.yaml 
+$ ka 10_ReplicaSet/rs.yaml 
 replicaset.apps/frontend created
 $ kg all
 NAME                 READY   STATUS              RESTARTS   AGE
@@ -49,7 +49,7 @@ When any pods get killed, the replicaset recreated another one.
 
 Let's cleanup the replicaset:
 ```
-$ krmf 06_ReplicaSet/rs.yaml 
+$ krmf 10_ReplicaSet/rs.yaml 
 replicaset.apps "frontend" deleted
 ```
 

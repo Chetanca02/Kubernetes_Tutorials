@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: nginx-pod
+  name: nginx-service
+  namespace: kube-tut
+spec:
+  ports:
+  - nodePort: 31303
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx-pod
+  type: NodePort
