@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+  namespace: my-namespace
+spec:
+  hard:
+    pods: 6                     # Maximum number of pods in the namespace
+    requests.cpu: "2"            # Total CPU requests cannot exceed 4 cores
+    requests.memory: "4Gi"       # Total memory requests cannot exceed 8Gi
+    limits.cpu: "4"              # Total CPU limits cannot exceed 8 cores
+    limits.memory: "8Gi"        # Total memory limits cannot exceed 16Gi
+    persistentvolumeclaims: 5    # Maximum number of PVCs
