@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-big-pod
+  namespace: kube-tut
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    resources: # Define resource requests and limits.
+      requests:
+        memory: "9Gi"
+        cpu: "10"
+      limits:
+        memory: "12Gi"
+        cpu: "15"
