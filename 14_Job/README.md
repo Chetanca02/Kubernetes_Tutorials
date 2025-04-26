@@ -100,3 +100,7 @@ Hello from pod
 ```
 This job runs 5 pods concurrently, and the job is considered complete after 5 successful completions. We can play with parallelism and completion counts.
 
+Cleanup:
+krm job simple-job
+krm job parallel-completion-job
+

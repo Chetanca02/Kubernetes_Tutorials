@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  app.properties: |
+    key1=value1
+    key2=value2
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+stringData:
+  username: admin
+  password: s3cr3t
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: projected-volume-example
+spec:
+  containers:
+  - name: app-container
+    image: busybox
+    command: 
+      - "/bin/sh"
+      - "-c"
+      - "cat /projected/app.properties && cat /projected/username && cat /projected/password"
+      - "sleep 3600"
+    volumeMounts:
+    - mountPath: /projected
+      name: combined-volume
+  volumes:
+  - name: combined-volume
+    projected:
+      sources:
+      - configMap:
+          name: my-config
+      - secret:
+          name: my-secret

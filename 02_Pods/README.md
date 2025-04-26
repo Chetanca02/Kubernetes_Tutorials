@@ -6,6 +6,7 @@
 ## Pods <a name="Pods"></a>
 
 In real-world deployments of containerized applications you will often want to colocate multiple applications into a single atomic unit, scheduled onto a single machine. A canonical example of such a deployment is illustrated in Figure below, which consists of a container serving web requests and a container synchronizing the filesystem with a remote Git repository.
+
 ![Multi containe pod](image.png)
 
 On one hand, the two different containers have significantly different requirements in terms of resource usage. 
@@ -28,6 +29,7 @@ $ k run nginx --image=nginx -n kube-tut
 ![alt text](image-1.png)
 
 The status of our example pod is ContainerCreating. In this phase, Kubernetes has accepted the request, trying to schedule the pod and pulling down the image. Zero containers are currently running. After waiting a moment, we could get the status again:
+
 ![alt text](image-2.png)
 
 ### Using manifests file
