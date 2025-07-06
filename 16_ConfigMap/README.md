@@ -104,7 +104,7 @@ pod/configmap-pod created
 $ kgp
 NAME            READY   STATUS    RESTARTS   AGE
 configmap-pod   1/1     Running   0          12s
-^C$ kex -it configmap-pod -- printenv
+$ kex -it configmap-pod -- printenv
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=configmap-pod
 NGINX_VERSION=1.27.3
@@ -114,6 +114,35 @@ PKG_RELEASE=1~bookworm
 DYNPKG_RELEASE=1~bookworm
 app.mode=debug
 app.color=Dark
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+TERM=xterm
+HOME=/root
+```
+
+If we need to use only 1 key from the configmap, instead of using the whole configmap, this can also be done. In the below example, you will see that only the value of `app.color` key is used as `color` in the environment varaibles, `app.mode` is not used.
+
+```
+$ ka pod-cm_2.yaml 
+pod/configmap-pod2 created
+$ kgp
+NAME            READY   STATUS    RESTARTS   AGE
+configmap-pod2   1/1     Running   0          10s
+$ kex -it configmap-pod -- printenv
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=configmap-pod2
+NGINX_VERSION=1.27.3
+NJS_VERSION=0.8.7
+NJS_RELEASE=1~bookworm
+PKG_RELEASE=1~bookworm
+DYNPKG_RELEASE=1~bookworm
+color=Dark
 KUBERNETES_PORT_443_TCP_PORT=443
 KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
 KUBERNETES_SERVICE_HOST=10.96.0.1
